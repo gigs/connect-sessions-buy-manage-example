@@ -1,11 +1,4 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { PlanCard } from "@/components/PlanCard";
 import {
   Carousel,
   CarouselContent,
@@ -13,7 +6,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { RocketLaunchIcon } from "@heroicons/react/24/outline";
 import { UserCircle } from "lucide-react";
 import Image from "next/image";
 
@@ -89,52 +81,23 @@ const CheckoutPage = () => {
             <Carousel className="w-full max-w-md">
               <CarouselContent>
                 <CarouselItem>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Unlimited Plan</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>Unlimited talk, text, and data for $50/month</p>
-                    </CardContent>
-                    <CardFooter>
-                      <Button size="sm" variant="default">
-                        Buy Now
-                      </Button>
-                    </CardFooter>
-                  </Card>
+                  <PlanCard
+                    title="Unlimited Plan"
+                    description="Unlimited talk, text, and data for $50/month"
+                  />
                 </CarouselItem>
                 <CarouselItem>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Basic Plan</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>500 minutes, 500 texts, 500MB data for $20/month</p>
-                    </CardContent>
-                    <CardFooter>
-                      <Button size="sm" variant="outline">
-                        Buy Now
-                      </Button>
-                    </CardFooter>
-                  </Card>
+                  <PlanCard
+                    title="Basic Plan"
+                    description="500 minutes, 500 texts, 500MB data for $20/month"
+                  />
                 </CarouselItem>
                 <CarouselItem>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Family Plan</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>
-                        Unlimited talk, text, and data for 4 lines for
-                        $150/month
-                      </p>
-                    </CardContent>
-                    <CardFooter>
-                      <Button size="sm" variant="outline">
-                        Buy Now
-                      </Button>
-                    </CardFooter>
-                  </Card>
+                  <PlanCard
+                    title="Family Plan"
+                    description="Unlimited talk, text, and data for 4 lines for
+                    $150/month"
+                  />
                 </CarouselItem>
               </CarouselContent>
               <CarouselPrevious />
