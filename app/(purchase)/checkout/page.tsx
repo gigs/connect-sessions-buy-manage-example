@@ -6,10 +6,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { getPlans } from "@/lib/api";
 import { UserCircle } from "lucide-react";
 import Image from "next/image";
 
-const CheckoutPage = () => {
+const CheckoutPage = async () => {
+  const plans = await getPlans();
+
   return (
     <div className="flex flex-col bg-[#f2f2f2] min-h-screen">
       <header className="flex justify-between items-center bg-white dark:bg-gray-800 p-6 shadow-md">
@@ -80,25 +83,15 @@ const CheckoutPage = () => {
             <h2 className="font-bold text-2xl">Add a phone plan?</h2>
             <Carousel className="w-full max-w-md">
               <CarouselContent>
-                <CarouselItem>
-                  <PlanCard
-                    title="Unlimited Plan"
-                    description="Unlimited talk, text, and data for $50/month"
-                  />
-                </CarouselItem>
-                <CarouselItem>
-                  <PlanCard
-                    title="Basic Plan"
-                    description="500 minutes, 500 texts, 500MB data for $20/month"
-                  />
-                </CarouselItem>
-                <CarouselItem>
-                  <PlanCard
-                    title="Family Plan"
-                    description="Unlimited talk, text, and data for 4 lines for
-                    $150/month"
-                  />
-                </CarouselItem>
+                {plans.items.map((plan) => (
+                  <CarouselItem key={plan.id}>
+                    <PlanCard
+                      title={plan.name}
+                      price={plan.price}
+                      allowances={plan.allowances}
+                    />
+                  </CarouselItem>
+                ))}
               </CarouselContent>
               <CarouselPrevious />
               <CarouselNext />
