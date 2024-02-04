@@ -89,6 +89,7 @@ const CheckoutPage = async () => {
                       title={plan.name}
                       price={plan.price}
                       allowances={plan.allowances}
+                      planId={plan.id}
                     />
                   </CarouselItem>
                 ))}

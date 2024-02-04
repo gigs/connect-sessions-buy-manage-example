@@ -1,3 +1,5 @@
+"use client";
+
 import { Plan } from "@/lib/schemas/plans";
 import { Button } from "./ui/button";
 import prettyBytes from "pretty-bytes";
@@ -8,15 +10,24 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import { checkoutCurrentUserWithPlan } from "@/lib/actions";
+import { useRouter } from "next/navigation";
 
 type PlanCardProps = {
   title: string;
   allowances: Plan["allowances"];
   price: Plan["price"];
-  id?: string;
+  planId: string;
 };
 
-export const PlanCard = ({ title, allowances, price }: PlanCardProps) => {
+export const PlanCard = ({
+  title,
+  allowances,
+  price,
+  planId,
+}: PlanCardProps) => {
+  const router = useRouter();
+
   const description = () => {
     const dataString =
       allowances.dataBytes === null
@@ -35,6 +46,15 @@ export const PlanCard = ({ title, allowances, price }: PlanCardProps) => {
 
     return `${dataString} - ${smsString} - ${voiceString}`;
   };
+
+  const handleClick = async (planId: string) => {
+    const session = await checkoutCurrentUserWithPlan(planId);
+
+    if (session?.url) {
+      router.push(session.url);
+    }
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -50,7 +70,7 @@ export const PlanCard = ({ title, allowances, price }: PlanCardProps) => {
         </p>
       </CardContent>
       <CardFooter>
-        <Button size="sm" variant="default">
+        <Button size="sm" variant="default" onClick={() => handleClick(planId)}>
           Buy Now
         </Button>
       </CardFooter>
