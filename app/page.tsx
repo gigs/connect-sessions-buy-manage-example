@@ -1,4 +1,12 @@
 import { CodeBracketIcon, DocumentTextIcon } from "@heroicons/react/24/outline";
+import {
+  Code,
+  FileText,
+  PanelsTopLeft,
+  PlaySquare,
+  SendToBack,
+  ShoppingBasket,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -29,43 +37,61 @@ export default function Home() {
 
           <div className="text-center max-w-screen-md mt-24">
             <h2 className="text-2xl font-bold">Connect Sessions examples</h2>
-            <p className="text-lg mt-4 text-gray-800">
+            <p className="text-lg mt-4 text-gray-600">
               This application showcases how Connect Sessions can be utilized
               for buying an managing subscriptions.
             </p>
+            <div className="flex justify-center mt-8 gap-8 mb-24">
+              <div className="flex items-center font-medium bg-ottoman-300 text-ottoman-900 p-3 rounded-lg">
+                <FileText className="w-5 h-5 mr-2" />
+                Read the guide
+              </div>
+              <div className="flex items-center font-medium bg-ottoman-300 text-ottoman-900 p-3 rounded-lg">
+                <PlaySquare className="w-5 h-5 mr-2" />
+                Watch the video
+              </div>
+            </div>
 
             <div className="grid grid-cols-2 w-full gap-6 mt-12 text-left">
               <div className="p-4 rounded-lg bg-ottoman-50 border border-ottoman-200">
-                <h3 className="text-gray-900 font-bold">
+                <h3 className="text-gray-900 font-bold flex gap-2 items-center">
+                  <ShoppingBasket className="w-5 h-5" />
                   Purchasing subscriptions
                 </h3>
-                <p className="text-gray-700 text-sm mt-2">
-                  Learn how to purchase a subscriptions for user you already
-                  have details for.
+                <p className="text-gray-700 text-sm mt-4">
+                  Learn how to purchase a subscriptions for users you already
+                  have collected details for in your own application.
                 </p>
                 <div className="flex gap-8 mt-4 text-gray-900 font-medium">
-                  <Link href="/checkout" className="flex items-center text-sm">
-                    <DocumentTextIcon className="h-4 w-4 mr-2" /> Demo
+                  <Link
+                    href="/checkout"
+                    className="flex items-center text-sm hover:bg-ottoman-100 rounded-lg p-2"
+                  >
+                    <PanelsTopLeft className="h-4 w-4 mr-2" /> Demo
                   </Link>
-                  <a className="flex items-center text-sm">
-                    <CodeBracketIcon className="h-4 w-4 mr-2" /> Source
+                  <a className="flex items-center text-sm hover:bg-ottoman-100 rounded-lg p-2">
+                    <Code className="h-4 w-4 mr-2" /> Source
                   </a>
                 </div>
               </div>
 
-              <div className="p-4 rounded-lg bg-ottoman-50 border border-ottoman-200">
-                <h3 className="text-gray-900 font-bold">
+              <div className="p-4 rounded-lg bg-ottoman-50 border border-ottoman-200 flex flex-col">
+                <h3 className="text-gray-900 font-bold flex gap-2 items-center">
+                  <SendToBack className="w-5 h-5" />
                   Managing Subscriptions
                 </h3>
-                <p className="text-gray-700 text-sm mt-2">
+                <p className="text-gray-700 text-sm mt-4">
                   Learn how to manage existing subscriptions for your users.
                 </p>
-                <div className="flex gap-8 mt-4 text-gray-900 font-medium">
-                  <a className="flex items-center text-sm">
-                    <DocumentTextIcon className="h-4 w-4 mr-2" /> Demo
-                  </a>
-                  <a className="flex items-center text-sm">
-                    <CodeBracketIcon className="h-4 w-4 mr-2" /> Source
+                <div className="flex gap-8 mt-auto text-gray-900 font-medium ">
+                  <Link
+                    href="/backoffice"
+                    className="flex items-center text-sm hover:bg-ottoman-100 rounded-lg p-2"
+                  >
+                    <PanelsTopLeft className="h-4 w-4 mr-2" /> Demo
+                  </Link>
+                  <a className="flex items-center text-sm hover:bg-ottoman-100 rounded-lg p-2">
+                    <Code className="h-4 w-4 mr-2" /> Source
                   </a>
                 </div>
               </div>
