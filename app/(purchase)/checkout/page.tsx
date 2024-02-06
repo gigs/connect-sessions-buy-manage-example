@@ -1,4 +1,5 @@
 import { PlanCard } from "@/components/PlanCard";
+import { Card } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -30,54 +31,60 @@ const CheckoutPage = async () => {
           </div>
         </div>
       </header>
-      <main className="max-w-6xl px-4 mx-auto py-6 ">
+      <main className="max-w-6xl px-12 mx-auto py-6 ">
         <h1 className="text-3xl font-bold text-center mt-6 mb-24">
           Order successfully submitted 🎉
         </h1>
-        <div className="grid md:grid-cols-[2fr_1fr] gap-24 items-start">
-          <div className="grid gap-4 md:gap-10 items-start ">
-            <h2 className="font-bold text-2xl">Order Details</h2>
-            <div className="flex items-center">
-              <Image
-                alt="User Avatar"
-                className="w-24 drop-shadow-xl"
-                height={80}
-                src="/iphone.png"
-                style={{
-                  objectFit: "contain",
-                }}
-                width={40}
-              />
-              <div className="ml-12 text-left flex items-start flex-col">
-                <h1 className="font-bold text-xl text-center">
-                  Acme Smartphone
-                </h1>
-                <p className="text-sm text-gray-500 text-center">
-                  128GB Storage
-                </p>
-                <p className="text-sm text-gray-500 text-center">
-                  Midnight Black
-                </p>
-                <p className="text-sm text-gray-500 text-center">eSIM + pSIM</p>
-                <h2 className="font-semibold text-lg md:text-xl mt-2 text-center">
-                  $699
-                </h2>
+        <div className="grid md:grid-cols-2 gap-24 items-start">
+          <div className="grid ">
+            <h2 className="font-bold text-2xl mb-10">Order Details</h2>
+            <Card className="flex flex-col p-8 gap-4 md:gap-10 items-start ">
+              <div className="flex items-center">
+                <Image
+                  alt="Phone image"
+                  className="w-24 drop-shadow-xl"
+                  height={80}
+                  src="/iphone.png"
+                  style={{
+                    objectFit: "contain",
+                  }}
+                  width={40}
+                />
+                <div className="ml-12 text-left flex items-start flex-col">
+                  <h1 className="font-bold text-xl text-center">
+                    Acme Smartphone
+                  </h1>
+                  <p className="text-sm text-gray-500 text-center">
+                    128GB Storage
+                  </p>
+                  <p className="text-sm text-gray-500 text-center">
+                    Midnight Black
+                  </p>
+                  <p className="text-sm text-gray-500 text-center">
+                    eSIM + pSIM
+                  </p>
+                  <h2 className="font-semibold text-lg md:text-xl mt-2 text-center">
+                    $699
+                  </h2>
+                </div>
               </div>
-            </div>
-            <div className="border-t pt-4">
-              <h3 className="font-semibold text-lg">Delivery Address</h3>
-              <p className="text-sm text-gray-500">John Doe</p>
-              <p className="text-sm text-gray-500">123 Main St.</p>
-              <p className="text-sm text-gray-500">Anytown, USA 12345</p>
-            </div>
-            <div className="border-t pt-4">
-              <h3 className="font-semibold text-lg">Estimated Delivery Time</h3>
-              <p className="text-sm text-gray-500">3-5 Business Days</p>
-            </div>
-            <div className="border-t pt-4">
-              <h3 className="font-semibold text-lg mt-2">Delivery Method</h3>
-              <p className="text-sm text-gray-500">Standard Shipping</p>
-            </div>
+              <div className="border-t pt-4 w-full">
+                <h3 className="font-semibold text-lg">Delivery Address</h3>
+                <p className="text-sm text-gray-500">John Doe</p>
+                <p className="text-sm text-gray-500">123 Main St.</p>
+                <p className="text-sm text-gray-500">Anytown, USA 12345</p>
+              </div>
+              <div className="border-t pt-4 w-full">
+                <h3 className="font-semibold text-lg">
+                  Estimated Delivery Time
+                </h3>
+                <p className="text-sm text-gray-500">3-5 Business Days</p>
+              </div>
+              <div className="border-t pt-4 w-full">
+                <h3 className="font-semibold text-lg mt-2">Delivery Method</h3>
+                <p className="text-sm text-gray-500">Standard Shipping</p>
+              </div>
+            </Card>
           </div>
           <div className="grid gap-4 md:gap-10 items-start">
             <h2 className="font-bold text-2xl">Add a phone plan?</h2>
