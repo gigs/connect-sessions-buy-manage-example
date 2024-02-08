@@ -38,8 +38,8 @@ export const ManagePlanActions = ({
     <>
       <PurchaseAddonDialog addons={addons} subscriptionId={subscriptionId} />
       <Button
-        variant="link"
-        className="text-yellow-500 flex items-center gap-2"
+        variant="ghost"
+        className="text-neutral-700 flex items-center gap-2"
         onClick={handleChangeClick}
       >
         <Replace className="h-4 w-4" />
@@ -47,7 +47,7 @@ export const ManagePlanActions = ({
       </Button>
       <Button
         onClick={handleCancelClick}
-        variant="link"
+        variant="ghost"
         className="text-rose-500 flex items-center gap-2"
       >
         <Trash className="h-4 w-4" />
