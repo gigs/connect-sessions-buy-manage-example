@@ -34,3 +34,64 @@ export const checkoutCurrentUserWithPlan = async (planId: string) => {
 
   return await createConnectSession(connectSession);
 };
+
+export const cancelSubscription = async (subscriptionId: string) => {
+  const currentUser = auth.getUser();
+  const userRes = await findUser(currentUser.email!);
+  const existingUser = userRes.items[0];
+
+  const connectSession = {
+    callbackUrl: "http://localhost:3000?error=connectSessionFailed",
+    intent: {
+      type: "cancelSubscription",
+      cancelSubscription: {
+        subscription: subscriptionId,
+      },
+    },
+    user: existingUser.id,
+  };
+
+  return await createConnectSession(connectSession);
+};
+
+export const changeSubscription = async (subscriptionId: string) => {
+  const currentUser = auth.getUser();
+  const userRes = await findUser(currentUser.email!);
+  const existingUser = userRes.items[0];
+
+  const connectSession = {
+    callbackUrl: "http://localhost:3000?error=connectSessionFailed",
+    intent: {
+      type: "changeSubscription",
+      changeSubscription: {
+        subscription: subscriptionId,
+      },
+    },
+    user: existingUser.id,
+  };
+
+  return await createConnectSession(connectSession);
+};
+
+export const checkoutAddon = async (
+  addonId: string,
+  subscriptionId: string
+) => {
+  const currentUser = auth.getUser();
+  const userRes = await findUser(currentUser.email!);
+  const existingUser = userRes.items[0];
+
+  const connectSession = {
+    callbackUrl: "http://localhost:3000?error=connectSessionFailed",
+    intent: {
+      type: "checkoutAddon",
+      checkoutAddon: {
+        addons: [addonId],
+        subscription: subscriptionId,
+      },
+    },
+    user: existingUser.id,
+  };
+
+  return await createConnectSession(connectSession);
+};

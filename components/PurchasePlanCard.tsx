@@ -12,40 +12,22 @@ import {
 } from "./ui/card";
 import { checkoutCurrentUserWithPlan } from "@/lib/actions";
 import { useRouter } from "next/navigation";
+import { description, formatPrice } from "@/lib/formatters";
 
-type PlanCardProps = {
+type PurchasePlanCardProps = {
   title: string;
   allowances: Plan["allowances"];
   price: Plan["price"];
   planId: string;
 };
 
-export const PlanCard = ({
+export const PurchasePlanCard = ({
   title,
   allowances,
   price,
   planId,
-}: PlanCardProps) => {
+}: PurchasePlanCardProps) => {
   const router = useRouter();
-
-  const description = () => {
-    const dataString =
-      allowances.dataBytes === null
-        ? "Unlimited Data"
-        : prettyBytes(allowances.dataBytes);
-
-    const smsString =
-      allowances.smsMessages === null
-        ? "Unlimited SMS"
-        : `${allowances.smsMessages} SMS`;
-
-    const voiceString =
-      allowances.voiceSeconds === null
-        ? "Unlimited Voice"
-        : `${allowances.voiceSeconds / 60 / 60} Hours Voice`;
-
-    return `${dataString} - ${smsString} - ${voiceString}`;
-  };
 
   const handleClick = async (planId: string) => {
     const session = await checkoutCurrentUserWithPlan(planId);
@@ -61,13 +43,8 @@ export const PlanCard = ({
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>{description()}</p>
-        <p>
-          {new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: price.currency,
-          }).format(price.amount / 100)}
-        </p>
+        <p>{description(allowances)}</p>
+        <p>{formatPrice(price)}</p>
       </CardContent>
       <CardFooter>
         <Button size="sm" variant="default" onClick={() => handleClick(planId)}>

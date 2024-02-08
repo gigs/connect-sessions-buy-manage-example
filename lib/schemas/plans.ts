@@ -1,3 +1,5 @@
+import { Price } from "./price";
+
 export type Plan = {
   object: "plan";
   id: string;
@@ -23,10 +25,7 @@ export type Plan = {
       bandwidthBitsPerSecond: number;
     } | null;
   } | null;
-  price: {
-    amount: number;
-    currency: string;
-  };
+  price: Price;
   provider: string;
   requirements: {
     address: "none" | "present" | "verified";

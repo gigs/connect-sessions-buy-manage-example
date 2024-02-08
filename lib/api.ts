@@ -1,4 +1,6 @@
+import { Addon } from "./schemas/addon";
 import { Plan } from "./schemas/plans";
+import { Subscription } from "./schemas/subscription";
 import { User } from "./schemas/users";
 
 const baseUrl = `https://api.gigs.com/projects/${process.env.GIGS_PROJECT}/`;
@@ -26,6 +28,27 @@ export const getPlans = async (): Promise<PlansResponse> => {
   return response.json();
 };
 
+export const getSubscriptionsByUser = async (
+  email: string
+): Promise<Subscription[]> => {
+  const userResponse = await findUser(email);
+  if (!userResponse.items.length) {
+    // TODO: Error handling?
+    return [];
+  }
+
+  const userId = userResponse.items[0].id;
+  const response = await fetch(
+    fetchUrl(`subscriptions?user=${userId}&status=active`),
+    {
+      headers,
+    }
+  );
+
+  const data = await response.json();
+  return data.items.length ? data.items : [];
+};
+
 type UsersResponse = {
   object: "list";
   items: User[];
@@ -43,11 +66,24 @@ export const findUser = async (email: string): Promise<UsersResponse> => {
   return response.json();
 };
 
+export const getAddons = async (provider: string): Promise<Addon[]> => {
+  const response = await fetch(
+    fetchUrl(`addons?status=available&provider=${provider}`),
+    {
+      headers,
+    }
+  );
+
+  const data = await response.json();
+  return data.items.length ? data.items : [];
+};
+
 export const createConnectSession = async (connectSession: any) => {
-  const options = {
+  const options: RequestInit = {
     method: "POST",
     headers,
     body: JSON.stringify(connectSession),
+    cache: "no-store", // Make sure we do not cache Connect Sessions as they're single use only
   };
 
   try {
