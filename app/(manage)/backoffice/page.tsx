@@ -4,9 +4,7 @@ import { ManagePlanCard } from "@/components/ManagePlanCard";
 import { SideNav } from "@/components/SideNav";
 
 export default async function BackOfficePage() {
-  const subscriptions = await getSubscriptionsByUser(
-    process.env.GIGS_MANAGABLE_USER_ID!
-  );
+  const subscriptions = await getSubscriptionsByUser();
 
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">

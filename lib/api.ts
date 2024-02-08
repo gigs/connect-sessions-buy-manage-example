@@ -1,3 +1,4 @@
+import { auth } from "./applicationMocks";
 import { Addon } from "./schemas/addon";
 import { Plan } from "./schemas/plans";
 import { Subscription } from "./schemas/subscription";
@@ -28,10 +29,13 @@ export const getPlans = async (): Promise<PlansResponse> => {
   return response.json();
 };
 
-export const getSubscriptionsByUser = async (
-  email: string
-): Promise<Subscription[]> => {
-  const userResponse = await findUser(email);
+export const getSubscriptionsByUser = async (): Promise<Subscription[]> => {
+  const currentUser = auth.getUser();
+  const userRes = await findUser(currentUser.email!);
+  const existingUser = userRes.items[0];
+
+  const userResponse = await findUser(existingUser.email);
+
   if (!userResponse.items.length) {
     // TODO: Error handling?
     return [];
