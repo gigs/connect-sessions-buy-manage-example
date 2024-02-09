@@ -8,10 +8,16 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { getPlans } from "@/lib/api";
+import { envVarsPresent } from "@/lib/utils";
 import { UserCircle } from "lucide-react";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 const CheckoutPage = async () => {
+  if (!envVarsPresent()) {
+    redirect("/setup-error");
+  }
+
   const plans = await getPlans();
 
   return (

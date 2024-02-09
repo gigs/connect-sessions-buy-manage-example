@@ -2,8 +2,14 @@ import { Button } from "@/components/ui/button";
 import { getSubscriptionsByUser } from "@/lib/api";
 import { ManagePlanCard } from "@/components/ManagePlanCard";
 import { SideNav } from "@/components/SideNav";
+import { envVarsPresent } from "@/lib/utils";
+import { redirect } from "next/navigation";
 
 export default async function BackOfficePage() {
+  if (!envVarsPresent()) {
+    redirect("/setup-error");
+  }
+
   const subscriptions = await getSubscriptionsByUser();
 
   return (
