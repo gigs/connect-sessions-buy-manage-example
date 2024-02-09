@@ -17,21 +17,21 @@ export const SideNav = () => {
       <div className="flex-1 overflow-auto py-2">
         <nav className="grid items-start px-4  gap-2 text-sm font-medium">
           <Link
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+            className="cursor-not-allowed flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
             href="#"
           >
             <ShoppingCart className="h-4 w-4" />
             Orders
           </Link>
           <Link
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+            className="cursor-not-allowed flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
             href="#"
           >
             <User2 className="h-4 w-4" />
             Profile
           </Link>
           <Link
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+            className="cursor-not-allowed flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
             href="#"
           >
             <Smartphone className="h-4 w-4" />

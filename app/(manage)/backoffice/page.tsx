@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <div className="flex items-center">
       <h1 className="font-semibold text-lg md:text-2xl">Phone Plans</h1>
-      <Button className="ml-auto" size="sm">
+      <Button className="ml-auto cursor-not-allowed" size="sm">
         Add Plan
       </Button>
     </div>
