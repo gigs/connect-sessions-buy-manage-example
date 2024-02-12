@@ -1,4 +1,3 @@
-import { CodeBracketIcon, DocumentTextIcon } from '@heroicons/react/24/outline'
 import {
   Code,
   FileText,
@@ -46,10 +45,12 @@ export default function Home() {
                 <FileText className="mr-2 h-5 w-5" />
                 Read the guide
               </div>
-              <div className="flex items-center rounded-lg bg-ottoman-300 p-3 font-medium text-ottoman-900">
-                <PlaySquare className="mr-2 h-5 w-5" />
-                Watch the video
-              </div>
+              {false && (
+                <div className="flex items-center rounded-lg bg-ottoman-300 p-3 font-medium text-ottoman-900">
+                  <PlaySquare className="mr-2 h-5 w-5" />
+                  Watch the video
+                </div>
+              )}
             </div>
 
             <div className="mt-12 grid w-full grid-cols-2 gap-6 text-left">
@@ -69,7 +70,10 @@ export default function Home() {
                   >
                     <PanelsTopLeft className="mr-2 h-4 w-4" /> Demo
                   </Link>
-                  <a className="flex items-center rounded-lg p-2 text-sm hover:bg-ottoman-100">
+                  <a
+                    href="https://github.com/gigs/connect-sessions-buy-manage-example/tree/main/app/(purchase)/checkout"
+                    className="flex items-center rounded-lg p-2 text-sm hover:bg-ottoman-100"
+                  >
                     <Code className="mr-2 h-4 w-4" /> Source
                   </a>
                 </div>
@@ -90,7 +94,10 @@ export default function Home() {
                   >
                     <PanelsTopLeft className="mr-2 h-4 w-4" /> Demo
                   </Link>
-                  <a className="flex items-center rounded-lg p-2 text-sm hover:bg-ottoman-100">
+                  <a
+                    href="https://github.com/gigs/connect-sessions-buy-manage-example/tree/main/app/(manage)/backoffice"
+                    className="flex items-center rounded-lg p-2 text-sm hover:bg-ottoman-100"
+                  >
                     <Code className="mr-2 h-4 w-4" /> Source
                   </a>
                 </div>
@@ -102,10 +109,9 @@ export default function Home() {
 
       <div className="my-32 grid text-center lg:w-full lg:max-w-5xl  lg:grid-cols-3 lg:text-left">
         <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="https://developers.gigs.com/docs/api/0472dd6bfc47d-about-connect-sessions"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           target="_blank"
-          rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
             Guides{' '}
@@ -119,10 +125,9 @@ export default function Home() {
         </a>
 
         <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="https://developers.gigs.com/docs/api/aa3106d502cbc-create-a-connect-session"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           target="_blank"
-          rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
             API Documentation{' '}
@@ -136,7 +141,7 @@ export default function Home() {
         </a>
 
         <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="mailto:support@gigs.com"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           target="_blank"
           rel="noopener noreferrer"
