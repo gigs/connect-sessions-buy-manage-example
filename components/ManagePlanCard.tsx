@@ -19,7 +19,7 @@ type ManagePlanCardProps = {
 };
 
 export const ManagePlanCard = async ({ subscription }: ManagePlanCardProps) => {
-  const addons = await getAddons(subscription.plan.provider);
+  const { data: addons } = await getAddons(subscription.plan.provider);
 
   return (
     <Card>
@@ -38,7 +38,10 @@ export const ManagePlanCard = async ({ subscription }: ManagePlanCardProps) => {
         )}
       </CardContent>
       <CardFooter className="flex justify-between border-t py-4">
-        <ManagePlanActions subscriptionId={subscription.id} addons={addons} />
+        <ManagePlanActions
+          subscriptionId={subscription.id}
+          addons={addons || []}
+        />
       </CardFooter>
     </Card>
   );

@@ -31,7 +31,7 @@ export const PurchaseAddonDialog = ({
   }
 
   const handleBuyAddonClick = async (addonId: string) => {
-    const session = await checkoutAddon(addonId, subscriptionId);
+    const { data: session } = await checkoutAddon(addonId, subscriptionId);
 
     if (session?.url) {
       router.push(session.url);

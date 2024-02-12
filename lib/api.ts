@@ -1,5 +1,9 @@
 import { auth } from "./applicationMocks";
 import { Addon } from "./schemas/addon";
+import {
+  ConenctSessionParams,
+  ConnectSessionResponse,
+} from "./schemas/connectSession";
 import { Plan } from "./schemas/plans";
 import { Subscription } from "./schemas/subscription";
 import { User } from "./schemas/users";
@@ -14,34 +18,47 @@ const headers = new Headers({
   cache: "no-cache",
 });
 
-type PlansResponse = {
-  object: "list";
-  items: Plan[];
-  moreItemsAfter?: boolean;
-  moreItemsBefore?: boolean;
+type ApiCollectionResonse<T> = {
+  error?: string;
+  data?: T[];
 };
 
-export const getPlans = async (): Promise<PlansResponse> => {
+type ApiItemResonse<T> = {
+  error?: string;
+  data?: T;
+};
+
+export const getPlans = async (): Promise<ApiCollectionResonse<Plan>> => {
   const response = await fetch(fetchUrl("plans"), {
     headers,
   });
 
-  return response.json();
-};
+  const data = await response.json();
 
-export const getSubscriptionsByUser = async (): Promise<Subscription[]> => {
-  const currentUser = auth.getUser();
-  const userRes = await findUser(currentUser.email!);
-  const existingUser = userRes.items[0];
-
-  const userResponse = await findUser(existingUser.email);
-
-  if (!userResponse.items.length) {
-    // TODO: Error handling?
-    return [];
+  if (response.status !== 200) {
+    return {
+      error: data.message,
+    };
   }
 
-  const userId = userResponse.items[0].id;
+  return { data: data.items };
+};
+
+export const getSubscriptionsByUser = async (): Promise<
+  ApiCollectionResonse<Subscription>
+> => {
+  const currentUser = auth.getUser();
+  const { error: userError, data: userData } = await findUser(
+    currentUser.email!
+  );
+
+  if (userError || !userData || userData?.length === 0) {
+    return { error: "User not found" };
+  }
+
+  const existingUser = userData[0];
+  const userId = existingUser.id;
+
   const response = await fetch(
     fetchUrl(`subscriptions?user=${userId}&status=active`),
     {
@@ -50,27 +67,38 @@ export const getSubscriptionsByUser = async (): Promise<Subscription[]> => {
   );
 
   const data = await response.json();
-  return data.items.length ? data.items : [];
+  if (response.status !== 200) {
+    return {
+      error: data.message,
+    };
+  }
+
+  return { data: data.items };
 };
 
-type UsersResponse = {
-  object: "list";
-  items: User[];
-  moreItemsAfter?: boolean;
-  moreItemsBefore?: boolean;
-};
-
-export const findUser = async (email: string): Promise<UsersResponse> => {
+export const findUser = async (
+  email: string
+): Promise<ApiCollectionResonse<User>> => {
   const response = await fetch(fetchUrl("users/search"), {
     headers,
     method: "POST",
     body: JSON.stringify({ email: email }),
   });
 
-  return response.json();
+  const data = await response.json();
+
+  if (response.status !== 200) {
+    return {
+      error: data.message,
+    };
+  }
+
+  return { data: data.items };
 };
 
-export const getAddons = async (provider: string): Promise<Addon[]> => {
+export const getAddons = async (
+  provider: string
+): Promise<ApiCollectionResonse<Addon>> => {
   const response = await fetch(
     fetchUrl(`addons?status=available&provider=${provider}`),
     {
@@ -79,10 +107,19 @@ export const getAddons = async (provider: string): Promise<Addon[]> => {
   );
 
   const data = await response.json();
-  return data.items.length ? data.items : [];
+
+  if (response.status !== 200) {
+    return {
+      error: data.message,
+    };
+  }
+
+  return { data: data.items };
 };
 
-export const createConnectSession = async (connectSession: any) => {
+export const createConnectSession = async (
+  connectSession: ConenctSessionParams
+): Promise<ApiItemResonse<ConnectSessionResponse>> => {
   const options: RequestInit = {
     method: "POST",
     headers,
@@ -90,12 +127,15 @@ export const createConnectSession = async (connectSession: any) => {
     cache: "no-store", // Make sure we do not cache Connect Sessions as they're single use only
   };
 
-  try {
-    const response = await fetch(fetchUrl("connectSessions"), options);
-    const data = await response.json();
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.error(error);
+  const response = await fetch(fetchUrl("connectSessions"), options);
+  const data = await response.json();
+
+  if (response.status !== 200) {
+    console.error(data);
+    return {
+      error: data.message,
+    };
   }
+
+  return { data };
 };

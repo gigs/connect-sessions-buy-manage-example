@@ -19,7 +19,7 @@ export const ManagePlanActions = ({
   const router = useRouter();
 
   const handleCancelClick = async () => {
-    const session = await cancelSubscription(subscriptionId);
+    const { data: session } = await cancelSubscription(subscriptionId);
 
     if (session?.url) {
       router.push(session.url);
@@ -27,10 +27,10 @@ export const ManagePlanActions = ({
   };
 
   const handleChangeClick = async () => {
-    const sessiont = await changeSubscription(subscriptionId);
+    const { data: session } = await changeSubscription(subscriptionId);
 
-    if (sessiont?.url) {
-      router.push(sessiont.url);
+    if (session?.url) {
+      router.push(session.url);
     }
   };
 

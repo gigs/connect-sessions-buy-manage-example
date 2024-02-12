@@ -2,13 +2,14 @@
 
 import { createConnectSession, findUser } from "./api";
 import { auth } from "./applicationMocks";
+import { ConenctSessionParams } from "./schemas/connectSession";
 
 export const checkoutCurrentUserWithPlan = async (planId: string) => {
   const currentUser = auth.getUser();
 
   // Check if user already exists
-  const userRes = await findUser(currentUser.email!);
-  const existingUser = userRes.items[0];
+  const { data: userRes } = await findUser(currentUser.email!);
+  const existingUser = userRes && userRes[0];
 
   const userPayload = existingUser
     ? { user: existingUser.id }
@@ -21,7 +22,7 @@ export const checkoutCurrentUserWithPlan = async (planId: string) => {
         },
       };
 
-  const connectSession = {
+  const connectSession: ConenctSessionParams = {
     callbackUrl: "http://localhost:3000?error=connectSessionFailed",
     intent: {
       type: "checkoutNewSubscription",
@@ -37,10 +38,15 @@ export const checkoutCurrentUserWithPlan = async (planId: string) => {
 
 export const cancelSubscription = async (subscriptionId: string) => {
   const currentUser = auth.getUser();
-  const userRes = await findUser(currentUser.email!);
-  const existingUser = userRes.items[0];
+  const { data: userRes } = await findUser(currentUser.email);
+  const existingUser = userRes && userRes[0];
 
-  const connectSession = {
+  // Since we're obtaining the user from an existing subscription, this should never happen
+  if (!existingUser) {
+    return { error: "User not found" };
+  }
+
+  const connectSession: ConenctSessionParams = {
     callbackUrl: "http://localhost:3000?error=connectSessionFailed",
     intent: {
       type: "cancelSubscription",
@@ -56,10 +62,15 @@ export const cancelSubscription = async (subscriptionId: string) => {
 
 export const changeSubscription = async (subscriptionId: string) => {
   const currentUser = auth.getUser();
-  const userRes = await findUser(currentUser.email!);
-  const existingUser = userRes.items[0];
+  const { data: userRes } = await findUser(currentUser.email);
+  const existingUser = userRes && userRes[0];
 
-  const connectSession = {
+  // Since we're obtaining the user from an existing subscription, this should never happen
+  if (!existingUser) {
+    return { error: "User not found" };
+  }
+
+  const connectSession: ConenctSessionParams = {
     callbackUrl: "http://localhost:3000?error=connectSessionFailed",
     intent: {
       type: "changeSubscription",
@@ -78,10 +89,15 @@ export const checkoutAddon = async (
   subscriptionId: string
 ) => {
   const currentUser = auth.getUser();
-  const userRes = await findUser(currentUser.email!);
-  const existingUser = userRes.items[0];
+  const { data: userRes } = await findUser(currentUser.email);
+  const existingUser = userRes && userRes[0];
 
-  const connectSession = {
+  // Since we're obtaining the user from an existing subscription, this should never happen
+  if (!existingUser) {
+    return { error: "User not found" };
+  }
+
+  const connectSession: ConenctSessionParams = {
     callbackUrl: "http://localhost:3000?error=connectSessionFailed",
     intent: {
       type: "checkoutAddon",

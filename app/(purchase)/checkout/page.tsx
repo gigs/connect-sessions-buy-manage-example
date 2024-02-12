@@ -1,3 +1,4 @@
+import { ErrorAlert } from "@/components/ErrorAlert";
 import { PurchasePlanCard } from "@/components/PurchasePlanCard";
 import { Card } from "@/components/ui/card";
 import {
@@ -18,10 +19,11 @@ const CheckoutPage = async () => {
     redirect("/setup-error");
   }
 
-  const plans = await getPlans();
+  const { error, data: plans } = await getPlans();
 
   return (
     <div className="flex flex-col bg-[#f2f2f2] min-h-screen">
+      {error && <ErrorAlert message={error} />}
       <header className="flex justify-between items-center bg-white dark:bg-gray-800 p-6 shadow-md">
         <Image
           alt="Company Logo"
@@ -43,25 +45,27 @@ const CheckoutPage = async () => {
         </h1>
         <div className="grid grid-cols-2 gap-24 items-start">
           <OrderSummary />
-          <div className="grid gap-4 md:gap-10 items-start">
-            <h2 className="font-bold text-2xl">Add a phone plan?</h2>
-            <Carousel className="w-full max-w-md">
-              <CarouselContent>
-                {plans.items.map((plan) => (
-                  <CarouselItem key={plan.id}>
-                    <PurchasePlanCard
-                      title={plan.name}
-                      price={plan.price}
-                      allowances={plan.allowances}
-                      planId={plan.id}
-                    />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
-          </div>
+          {plans && (
+            <div className="grid gap-4 md:gap-10 items-start">
+              <h2 className="font-bold text-2xl">Add a phone plan?</h2>
+              <Carousel className="w-full max-w-md">
+                <CarouselContent>
+                  {plans.map((plan) => (
+                    <CarouselItem key={plan.id}>
+                      <PurchasePlanCard
+                        title={plan.name}
+                        price={plan.price}
+                        allowances={plan.allowances}
+                        planId={plan.id}
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+            </div>
+          )}
         </div>
       </main>
     </div>
