@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Connect Sessions Buy & Manage example application
 
-## Getting Started
+This application showcase how Connect Sessions can be used to buy and manag phone plans through Connect from your existing application. This is a developer reference.
 
-First, run the development server:
+To get the most out of this, please read the [associated guide]() or watch the [video walk through]().
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+If you just want to read the code, please start at [app/(purchase)]() to learn about buying plans and [app/(manage)]() to learn about managing existing plans.
+
+If you want to run the application locally, please refer to [the setup section](#setup).
+
+**Further resources:**  
+- [Connect Sessions Developer Guides](https://developers.gigs.com/docs/api/0472dd6bfc47d-about-connect-sessions)
+- [Gigs API Documentation](https://developers.gigs.com/docs/api/aa3106d502cbc-create-a-connect-session)
+
+## Setup
+In order to run this example locally, you need:
+- an existing Project with Connect enabled and at least one plan and one add-on configured
+- a valid API key
+
+To setup the example:
+
+**Clone the repository**  
+```shell
+git clone https://github.com/gigs/connect-sessions-buy-manage-example.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Install dependencies**  
+```shell
+cd connect-sessions-buy-manage-example
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Create an `.env.local` file**
+```shell
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Set the required environment variables:  
+- `GIGS_PROJECT`: The name of your project (the yourproject part from your yourproject.gigs.com Connect url)
+- `GIGS_API_KEY`: Your API key
+- `GIGS_MANAGABLE_USER_EMAIL`: The desired email of your user (it does not have to exist in your project yet, but you **should have access to the emails**)
 
-## Learn More
+**Start the app**  
+```shell
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+The application should now be running at http://localhost:3000
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

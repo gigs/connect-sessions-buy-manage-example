@@ -4,7 +4,7 @@ import Link from 'next/link'
 const SetupErrorPage = () => {
   const gigsProject = process.env.GIGS_PROJECT
   const gigsAPIKey = process.env.GIGS_API_KEY
-  const gigsUser = process.env.GIGS_MANAGABLE_USER_ID
+  const gigsUser = process.env.GIGS_MANAGABLE_USER_EMAIL
 
   return (
     <div className="flex h-screen items-center justify-center bg-ottoman-100">
@@ -34,7 +34,7 @@ const SetupErrorPage = () => {
           </div>
           <div className="flex items-center gap-2">
             <PresentMissinIcon present={!!gigsUser} />
-            GIGS_MANAGABLE_USER_ID
+            GIGS_MANAGABLE_USER_EMAIL
           </div>
         </div>
 
