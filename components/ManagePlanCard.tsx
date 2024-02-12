@@ -5,21 +5,18 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
-import Link from "next/link";
-import { PlusCircle, Replace, Trash } from "lucide-react";
-import { Subscription } from "@/lib/schemas/subscription";
-import { Progress } from "./ui/progress";
-import { description, formatPrice } from "@/lib/formatters";
-import { ManagePlanActions } from "./ManagePlanActions";
-import { getAddons } from "@/lib/api";
+} from './ui/card'
+import { Subscription } from '@/lib/schemas/subscription'
+import { description, formatPrice } from '@/lib/formatters'
+import { ManagePlanActions } from './ManagePlanActions'
+import { getAddons } from '@/lib/api'
 
 type ManagePlanCardProps = {
-  subscription: Subscription;
-};
+  subscription: Subscription
+}
 
 export const ManagePlanCard = async ({ subscription }: ManagePlanCardProps) => {
-  const { data: addons } = await getAddons(subscription.plan.provider);
+  const { data: addons } = await getAddons(subscription.plan.provider)
 
   return (
     <Card>
@@ -31,11 +28,6 @@ export const ManagePlanCard = async ({ subscription }: ManagePlanCardProps) => {
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         <p>{description(subscription.plan.allowances)}</p>
-        {subscription.plan.allowances.dataBytes !== null && (
-          <div className="flex items-center w-full">
-            <Progress value={60} />
-          </div>
-        )}
       </CardContent>
       <CardFooter className="flex justify-between border-t py-4">
         <ManagePlanActions
@@ -44,5 +36,5 @@ export const ManagePlanCard = async ({ subscription }: ManagePlanCardProps) => {
         />
       </CardFooter>
     </Card>
-  );
-};
+  )
+}

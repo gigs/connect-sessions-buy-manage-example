@@ -1,25 +1,18 @@
-"use client";
+'use client'
 
-import { Plan } from "@/lib/schemas/plans";
-import { Button } from "./ui/button";
-import prettyBytes from "pretty-bytes";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { checkoutCurrentUserWithPlan } from "@/lib/actions";
-import { useRouter } from "next/navigation";
-import { description, formatPrice } from "@/lib/formatters";
+import { Plan } from '@/lib/schemas/plans'
+import { Button } from './ui/button'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card'
+import { checkoutCurrentUserWithPlan } from '@/lib/actions'
+import { useRouter } from 'next/navigation'
+import { description, formatPrice } from '@/lib/formatters'
 
 type PurchasePlanCardProps = {
-  title: string;
-  allowances: Plan["allowances"];
-  price: Plan["price"];
-  planId: string;
-};
+  title: string
+  allowances: Plan['allowances']
+  price: Plan['price']
+  planId: string
+}
 
 export const PurchasePlanCard = ({
   title,
@@ -27,15 +20,15 @@ export const PurchasePlanCard = ({
   price,
   planId,
 }: PurchasePlanCardProps) => {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleClick = async (planId: string) => {
-    const { data: session } = await checkoutCurrentUserWithPlan(planId);
+    const { data: session } = await checkoutCurrentUserWithPlan(planId)
 
     if (session?.url) {
-      router.push(session.url);
+      router.push(session.url)
     }
-  };
+  }
 
   return (
     <Card>
@@ -52,5 +45,5 @@ export const PurchasePlanCard = ({
         </Button>
       </CardFooter>
     </Card>
-  );
-};
+  )
+}

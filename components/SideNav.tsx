@@ -1,6 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Phone, ShoppingCart, Smartphone, User2 } from "lucide-react";
+import Link from 'next/link'
+import Image from 'next/image'
+import { Phone, ShoppingCart, Smartphone, User2 } from 'lucide-react'
 
 export const SideNav = () => {
   return (
@@ -15,23 +15,23 @@ export const SideNav = () => {
         />
       </div>
       <div className="flex-1 overflow-auto py-2">
-        <nav className="grid items-start px-4  gap-2 text-sm font-medium">
+        <nav className="grid items-start gap-2  px-4 text-sm font-medium">
           <Link
-            className="cursor-not-allowed flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+            className="flex cursor-not-allowed items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
             href="#"
           >
             <ShoppingCart className="h-4 w-4" />
             Orders
           </Link>
           <Link
-            className="cursor-not-allowed flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+            className="flex cursor-not-allowed items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
             href="#"
           >
             <User2 className="h-4 w-4" />
             Profile
           </Link>
           <Link
-            className="cursor-not-allowed flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+            className="flex cursor-not-allowed items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
             href="#"
           >
             <Smartphone className="h-4 w-4" />
@@ -47,5 +47,5 @@ export const SideNav = () => {
         </nav>
       </div>
     </div>
-  );
-};
+  )
+}
