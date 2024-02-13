@@ -18,7 +18,7 @@ const headers = new Headers({
   cache: 'no-cache',
 })
 
-type ApiCollectionResonse<T> = {
+type ApiCollectionResponse<T> = {
   error?: string
   data?: T[]
 }
@@ -28,7 +28,7 @@ type ApiItemResonse<T> = {
   data?: T
 }
 
-export const getPlans = async (): Promise<ApiCollectionResonse<Plan>> => {
+export const getPlans = async (): Promise<ApiCollectionResponse<Plan>> => {
   const response = await fetch(fetchUrl('plans'), {
     headers,
   })
@@ -45,7 +45,7 @@ export const getPlans = async (): Promise<ApiCollectionResonse<Plan>> => {
 }
 
 export const getSubscriptionsByUser = async (): Promise<
-  ApiCollectionResonse<Subscription>
+  ApiCollectionResponse<Subscription>
 > => {
   const currentUser = auth.getUser()
   const { error: userError, data: userData } = await findUser(
@@ -78,7 +78,7 @@ export const getSubscriptionsByUser = async (): Promise<
 
 export const findUser = async (
   email: string,
-): Promise<ApiCollectionResonse<User>> => {
+): Promise<ApiCollectionResponse<User>> => {
   const response = await fetch(fetchUrl('users/search'), {
     headers,
     method: 'POST',
@@ -98,7 +98,7 @@ export const findUser = async (
 
 export const getAddons = async (
   provider: string,
-): Promise<ApiCollectionResonse<Addon>> => {
+): Promise<ApiCollectionResponse<Addon>> => {
   const response = await fetch(
     fetchUrl(`addons?status=available&provider=${provider}`),
     {
