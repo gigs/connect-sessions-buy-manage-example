@@ -35,7 +35,7 @@ const CheckoutPage = async () => {
         <div className="flex items-center gap-2">
           <div className="flex gap-2 text-gray-700 dark:text-gray-300">
             <UserCircle />
-            John Doe
+            {process.env.GIGS_MANAGABLE_USER_EMAIL}
           </div>
         </div>
       </header>
