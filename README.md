@@ -2,9 +2,9 @@
 
 This application showcase how Connect Sessions can be used to buy and manag phone plans through Connect from your existing application. This is a developer reference.
 
-To get the most out of this, please read the [associated guide]() or watch the [video walk through]().
+To get the most out of this, please read the [associated guide](https://developers.gigs.com/docs/api/805ba2c145553-example-purchasing-and-managing-subscriptions-using-connect-sessions).
 
-If you just want to read the code, please start at [app/(purchase)]() to learn about buying plans and [app/(manage)]() to learn about managing existing plans.
+If you just want to read the code, please start at [app/(purchase)](https://github.com/gigs/connect-sessions-buy-manage-example/tree/main/app/(purchase)/checkout) to learn about buying plans and [app/(manage)](https://github.com/gigs/connect-sessions-buy-manage-example/tree/main/app/(manage)/backoffice) to learn about managing existing plans.
 
 If you want to run the application locally, please refer to [the setup section](#setup).
 

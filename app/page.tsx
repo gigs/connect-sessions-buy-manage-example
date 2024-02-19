@@ -41,10 +41,13 @@ export default function Home() {
               for buying an managing subscriptions.
             </p>
             <div className="mb-24 mt-8 flex justify-center gap-8">
-              <div className="flex items-center rounded-lg bg-ottoman-300 p-3 font-medium text-ottoman-900">
+              <a
+                href="https://developers.gigs.com/docs/api/805ba2c145553-example-purchasing-and-managing-subscriptions-using-connect-sessions"
+                className="flex items-center rounded-lg bg-ottoman-300 p-3 font-medium text-ottoman-900"
+              >
                 <FileText className="mr-2 h-5 w-5" />
                 Read the guide
-              </div>
+              </a>
               {false && (
                 <div className="flex items-center rounded-lg bg-ottoman-300 p-3 font-medium text-ottoman-900">
                   <PlaySquare className="mr-2 h-5 w-5" />
