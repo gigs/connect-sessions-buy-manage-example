@@ -31,7 +31,14 @@ export const PurchaseAddonDialog = ({
   }
 
   const handleBuyAddonClick = async (addonId: string) => {
-    const { data: session } = await checkoutAddon(addonId, subscriptionId)
+    const { data: session, error } = await checkoutAddon(
+      addonId,
+      subscriptionId,
+    )
+
+    if (error) {
+      // Do error handling here
+    }
 
     if (session?.url) {
       router.push(session.url)
