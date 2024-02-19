@@ -23,7 +23,11 @@ export const PurchasePlanCard = ({
   const router = useRouter()
 
   const handleClick = async (planId: string) => {
-    const { data: session } = await checkoutCurrentUserWithPlan(planId)
+    const { data: session, error } = await checkoutCurrentUserWithPlan(planId)
+
+    if (error) {
+      // Do error handling here
+    }
 
     if (session?.url) {
       router.push(session.url)

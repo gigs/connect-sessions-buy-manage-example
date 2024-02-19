@@ -29,7 +29,7 @@ export const ManagePlanCard = async ({ subscription }: ManagePlanCardProps) => {
       <CardContent className="flex flex-col gap-4">
         <p>{description(subscription.plan.allowances)}</p>
       </CardContent>
-      <CardFooter className="flex justify-between border-t py-4">
+      <CardFooter className="flex flex-wrap justify-between border-t py-4">
         <ManagePlanActions
           subscriptionId={subscription.id}
           addons={addons || []}

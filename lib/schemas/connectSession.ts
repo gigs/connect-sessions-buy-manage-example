@@ -53,7 +53,7 @@ export type ConnectSessionResponse = ConnectSession & {
   url: string
 }
 
-export type ConenctSessionParams = Omit<ConnectSession, 'object' | 'id'> & {
+export type ConnectSessionParams = Omit<ConnectSession, 'object' | 'id'> & {
   userDetails?: {
     email: string
     fullName?: string

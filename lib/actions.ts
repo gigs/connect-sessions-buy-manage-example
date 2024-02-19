@@ -2,7 +2,7 @@
 
 import { createConnectSession, findUser } from './api'
 import { auth } from './applicationMocks'
-import { ConenctSessionParams } from './schemas/connectSession'
+import { ConnectSessionParams } from './schemas/connectSession'
 
 export const checkoutCurrentUserWithPlan = async (planId: string) => {
   const currentUser = auth.getUser()
@@ -22,7 +22,7 @@ export const checkoutCurrentUserWithPlan = async (planId: string) => {
         },
       }
 
-  const connectSession: ConenctSessionParams = {
+  const connectSession: ConnectSessionParams = {
     callbackUrl: 'http://localhost:3000?error=connectSessionFailed',
     intent: {
       type: 'checkoutNewSubscription',
@@ -46,7 +46,7 @@ export const cancelSubscription = async (subscriptionId: string) => {
     return { error: 'User not found' }
   }
 
-  const connectSession: ConenctSessionParams = {
+  const connectSession: ConnectSessionParams = {
     callbackUrl: 'http://localhost:3000?error=connectSessionFailed',
     intent: {
       type: 'cancelSubscription',
@@ -70,7 +70,7 @@ export const changeSubscription = async (subscriptionId: string) => {
     return { error: 'User not found' }
   }
 
-  const connectSession: ConenctSessionParams = {
+  const connectSession: ConnectSessionParams = {
     callbackUrl: 'http://localhost:3000?error=connectSessionFailed',
     intent: {
       type: 'changeSubscription',
@@ -97,7 +97,7 @@ export const checkoutAddon = async (
     return { error: 'User not found' }
   }
 
-  const connectSession: ConenctSessionParams = {
+  const connectSession: ConnectSessionParams = {
     callbackUrl: 'http://localhost:3000?error=connectSessionFailed',
     intent: {
       type: 'checkoutAddon',

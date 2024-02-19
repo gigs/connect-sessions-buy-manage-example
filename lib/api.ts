@@ -1,7 +1,7 @@
 import { auth } from './applicationMocks'
 import { Addon } from './schemas/addon'
 import {
-  ConenctSessionParams,
+  ConnectSessionParams,
   ConnectSessionResponse,
 } from './schemas/connectSession'
 import { Plan } from './schemas/plans'
@@ -118,7 +118,7 @@ export const getAddons = async (
 }
 
 export const createConnectSession = async (
-  connectSession: ConenctSessionParams,
+  connectSession: ConnectSessionParams,
 ): Promise<ApiItemResonse<ConnectSessionResponse>> => {
   const options: RequestInit = {
     method: 'POST',
