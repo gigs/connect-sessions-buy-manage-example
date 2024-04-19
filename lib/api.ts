@@ -23,7 +23,7 @@ type ApiCollectionResponse<T> = {
   data?: T[]
 }
 
-type ApiItemResonse<T> = {
+type ApiItemResponse<T> = {
   error?: string
   data?: T
 }
@@ -119,7 +119,7 @@ export const getAddons = async (
 
 export const createConnectSession = async (
   connectSession: ConnectSessionParams,
-): Promise<ApiItemResonse<ConnectSessionResponse>> => {
+): Promise<ApiItemResponse<ConnectSessionResponse>> => {
   const options: RequestInit = {
     method: 'POST',
     headers,
