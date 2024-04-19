@@ -18,6 +18,7 @@ export const LoginForm = () => {
             id="email"
             required
             placeholder="example@gigs.com"
+            autoFocus
           />
         </div>
         <Button type="submit">Log In</Button>
