@@ -10,9 +10,10 @@ import {
 } from '@/components/ui/carousel'
 import { getPlans } from '@/lib/api'
 import { envVarsPresent } from '@/lib/utils'
-import { UserCircle } from 'lucide-react'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
+import { UserButton } from '@/components/UserButton'
+import { auth } from '@/lib/applicationMocks'
 
 const CheckoutPage = async () => {
   if (!envVarsPresent()) {
@@ -32,12 +33,7 @@ const CheckoutPage = async () => {
           src="/tigr-logo.webp"
           width={100}
         />
-        <div className="flex items-center gap-2">
-          <div className="flex gap-2 text-gray-700 dark:text-gray-300">
-            <UserCircle />
-            {process.env.GIGS_MANAGABLE_USER_EMAIL}
-          </div>
-        </div>
+        <UserButton user={auth.getUser().email} />
       </header>
       <main className="mx-auto max-w-6xl px-12 py-6 ">
         <h1 className="mb-24 mt-6 text-center text-3xl font-bold">

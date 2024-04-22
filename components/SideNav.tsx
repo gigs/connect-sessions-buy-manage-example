@@ -2,6 +2,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Phone, ShoppingCart, Smartphone, User2 } from 'lucide-react'
 
+import { SideNavLogoutButton } from '@/components/SideNavLogoutButton'
+
 export const SideNav = () => {
   return (
     <div className="flex h-full max-h-screen flex-col gap-2">
@@ -15,7 +17,7 @@ export const SideNav = () => {
         />
       </div>
       <div className="flex-1 overflow-auto py-2">
-        <nav className="grid items-start gap-2  px-4 text-sm font-medium">
+        <nav className="flex h-full flex-col items-stretch gap-2 px-4 text-sm font-medium">
           <Link
             className="flex cursor-not-allowed items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
             href="#"
@@ -44,6 +46,8 @@ export const SideNav = () => {
             <Phone className="h-4 w-4" />
             Phone Plans
           </Link>
+
+          <SideNavLogoutButton />
         </nav>
       </div>
     </div>

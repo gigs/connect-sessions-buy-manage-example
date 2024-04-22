@@ -1,6 +1,6 @@
 # Connect Sessions Buy & Manage example
 
-This application showcase how Connect Sessions can be used to buy and manag phone plans through Connect from your existing application. This is a developer reference.
+This application showcase how Connect Sessions can be used to buy and manage phone plans through Connect from your existing application. This is a developer reference.
 
 To get the most out of this, please read the [associated guide](https://developers.gigs.com/docs/api/805ba2c145553-example-purchasing-and-managing-subscriptions-using-connect-sessions).
 
@@ -20,7 +20,7 @@ In order to run this example locally, you need:
 - an existing Project with Connect enabled and at least one plan and one add-on configured
 - a valid API key
 
-To setup the example:
+To set up the example:
 
 **Clone the repository**
 
@@ -45,7 +45,6 @@ Set the required environment variables:
 
 - `GIGS_PROJECT`: The name of your project (the yourproject part from your yourproject.gigs.com Connect url)
 - `GIGS_API_KEY`: Your API key
-- `GIGS_MANAGABLE_USER_EMAIL`: The desired email of your user (it does not have to exist in your project yet, but you **should have access to the emails**)
 
 **Start the app**
 

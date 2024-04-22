@@ -4,7 +4,6 @@ import Link from 'next/link'
 const SetupErrorPage = () => {
   const gigsProject = process.env.GIGS_PROJECT
   const gigsAPIKey = process.env.GIGS_API_KEY
-  const gigsUser = process.env.GIGS_MANAGABLE_USER_EMAIL
 
   return (
     <div className="flex h-screen items-center justify-center bg-ottoman-100">
@@ -25,16 +24,12 @@ const SetupErrorPage = () => {
         </a>
         <div className="my-12 flex flex-col gap-4 self-center bg-gray-100 p-8 font-mono">
           <div className="flex items-center gap-2">
-            <PresentMissinIcon present={!!gigsProject} />
+            <PresentMissingIcon present={!!gigsProject} />
             GIGS_PROJECT
           </div>
           <div className="flex items-center gap-2">
-            <PresentMissinIcon present={!!gigsAPIKey} />
+            <PresentMissingIcon present={!!gigsAPIKey} />
             GIGS_API_KEY
-          </div>
-          <div className="flex items-center gap-2">
-            <PresentMissinIcon present={!!gigsUser} />
-            GIGS_MANAGABLE_USER_EMAIL
           </div>
         </div>
 
@@ -49,7 +44,7 @@ const SetupErrorPage = () => {
   )
 }
 
-const PresentMissinIcon = ({ present }: { present: boolean }) => {
+const PresentMissingIcon = ({ present }: { present: boolean }) => {
   if (present) {
     return <Check className="h-4 w-4 text-green-600" />
   }

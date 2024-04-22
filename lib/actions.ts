@@ -1,7 +1,7 @@
 'use server'
 
 import { createConnectSession, findUser } from './api'
-import { auth } from './applicationMocks'
+import { auth, resetUserEmail, setUserEmail } from './applicationMocks'
 import { ConnectSessionParams } from './schemas/connectSession'
 
 export const checkoutCurrentUserWithPlan = async (planId: string) => {
@@ -110,4 +110,15 @@ export const checkoutAddon = async (
   }
 
   return await createConnectSession(connectSession)
+}
+
+export const login = (formData: FormData) => {
+  const email = formData.get('email') as string
+
+  // perform an actual authentication call here
+  setUserEmail(email)
+}
+
+export const logout = () => {
+  resetUserEmail()
 }
