@@ -4,6 +4,7 @@ import { ManagePlanCard } from '@/components/ManagePlanCard'
 import { SideNav } from '@/components/SideNav'
 import { envVarsPresent } from '@/lib/utils'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 
 export default async function BackOfficePage() {
   if (!envVarsPresent()) {
@@ -39,8 +40,8 @@ const Header = () => {
   return (
     <div className="flex items-center">
       <h1 className="text-lg font-semibold md:text-2xl">Phone Plans</h1>
-      <Button className="ml-auto cursor-not-allowed" size="sm">
-        Add Plan
+      <Button asChild className="ml-auto" size="sm">
+        <Link href="/checkout">Add Plan</Link>
       </Button>
     </div>
   )
