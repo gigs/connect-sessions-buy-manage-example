@@ -1,4 +1,16 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  async redirects() {
+    return process.env.APP_ENV === 'hosted'
+      ? [
+          {
+            source: '/',
+            destination: '/checkout',
+            permanent: true,
+          },
+        ]
+      : []
+  },
+}
 
 module.exports = nextConfig
