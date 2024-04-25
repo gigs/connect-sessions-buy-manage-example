@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { injectPrivateEnvVars } from '@/lib/utils'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -8,6 +9,8 @@ export const metadata: Metadata = {
   title: 'Connect Sessions Examples',
   description: 'By Gigs',
 }
+
+injectPrivateEnvVars()
 
 export default function RootLayout({
   children,

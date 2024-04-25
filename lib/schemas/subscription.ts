@@ -29,9 +29,3 @@ const validSubscriptionStatuses = ['pending', 'active', 'ended'] as const
 
 type SubscriptionStatus = ElementOf<typeof validSubscriptionStatuses>
 
-type Coverage = {
-  object: 'coverage'
-  id: string
-  name: string
-  countries: string[]
-}
