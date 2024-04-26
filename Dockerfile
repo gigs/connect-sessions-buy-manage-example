@@ -17,6 +17,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+ARG APP_ENV
+ENV APP_ENV=$APP_ENV
+
 ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN npm run build
@@ -24,14 +27,6 @@ RUN npm run build
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
-
-ARG APP_ENV
-ARG GIGS_PROJECT
-ARG GIGS_API_KEY
-
-ENV APP_ENV=$APP_ENV
-ENV GIGS_PROJECT=$GIGS_PROJECT
-ENV GIGS_API_KEY=$GIGS_API_KEY
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
