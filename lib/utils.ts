@@ -16,3 +16,13 @@ export const envVarsPresent = () => {
 
   return !!gigsProject && !!gigsAPIKey
 }
+
+const privateEnvVars = {
+  APP_ENV: process.env.APP_ENV,
+  GIGS_PROJECT: process.env.GIGS_PROJECT,
+  GIGS_API_KEY: process.env.GIGS_API_KEY,
+}
+
+export function injectPrivateEnvVars() {
+  Object.assign(process.env, privateEnvVars)
+}
