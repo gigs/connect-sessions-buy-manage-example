@@ -8,17 +8,15 @@ import { OrderSummary } from '@/components/OrderSummary'
 import { clsx } from 'clsx'
 
 type Props = {
-  params: {
-    planId: string
-  }
   searchParams: {
+    planId: string
     status: 'success' | string
     session_id: string
   }
 }
 
-const CheckoutWithPlanPage = async ({ params, searchParams }: Props) => {
-  const { error, data: plan } = await getPlan(params.planId)
+const CheckoutSuccessPage = async ({ searchParams }: Props) => {
+  const { error, data: plan } = await getPlan(searchParams.planId)
 
   const status = searchParams?.status
   const isPlanAddedSuccessfully = status === 'success'
@@ -73,4 +71,4 @@ const CheckoutWithPlanPage = async ({ params, searchParams }: Props) => {
   )
 }
 
-export default CheckoutWithPlanPage
+export default CheckoutSuccessPage
