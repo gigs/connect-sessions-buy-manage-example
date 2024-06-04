@@ -17,7 +17,7 @@ type Props = {
   }
 }
 
-const CheckoutPage = async ({ params, searchParams }: Props) => {
+const CheckoutWithPlanPage = async ({ params, searchParams }: Props) => {
   const { error, data: plan } = await getPlan(params.planId)
 
   const status = searchParams?.status
@@ -73,4 +73,4 @@ const CheckoutPage = async ({ params, searchParams }: Props) => {
   )
 }
 
-export default CheckoutPage
+export default CheckoutWithPlanPage
