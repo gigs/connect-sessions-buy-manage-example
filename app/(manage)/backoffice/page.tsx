@@ -5,16 +5,47 @@ import { SideNav } from '@/components/SideNav'
 import { envVarsPresent } from '@/lib/utils'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { SuccessAlert } from '@/components/SuccessAlert'
+import { ErrorAlert } from '@/components/ErrorAlert'
 
-export default async function BackOfficePage() {
+type CallbackAction =
+  | 'checkoutAddon'
+  | 'changeSubscription'
+  | 'cancelSubscription'
+
+type Props = {
+  searchParams?: {
+    action?: CallbackAction
+    status?: 'success' | string
+    session_id?: string
+  }
+}
+
+export default async function BackOfficePage({ searchParams }: Props) {
   if (!envVarsPresent()) {
     redirect('/setup-error')
   }
 
   const { data: subscriptions } = await getSubscriptionsByUser()
 
+  const hasCallbackStatus = !!searchParams?.status
+  const isSuccessfulCallback =
+    hasCallbackStatus && searchParams.status === 'success'
+  const isFailedCallback =
+    hasCallbackStatus && searchParams.status !== 'success'
+
+  const successMessageMap: Record<CallbackAction, string> = {
+    checkoutAddon: 'Addon successfully added to subscription!',
+    changeSubscription: 'Subscription successfully changed!',
+    cancelSubscription: 'Subscription successfully cancelled!',
+  }
+
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
+      {isFailedCallback && <ErrorAlert message={searchParams.status!} />}
+      {isSuccessfulCallback && (
+        <SuccessAlert message={successMessageMap[searchParams.action!]} />
+      )}
       <div className="hidden border-r bg-white dark:bg-gray-800/40 lg:block">
         <SideNav />
       </div>

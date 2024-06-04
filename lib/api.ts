@@ -44,6 +44,24 @@ export const getPlans = async (): Promise<ApiCollectionResponse<Plan>> => {
   return { data: data.items }
 }
 
+export const getPlan = async (
+  planId: string,
+): Promise<ApiItemResponse<Plan>> => {
+  const response = await fetch(fetchUrl(`plans/${planId}`), {
+    headers,
+  })
+
+  const data = await response.json()
+
+  if (response.status !== 200) {
+    return {
+      error: data.message,
+    }
+  }
+
+  return { data }
+}
+
 export const getSubscriptionsByUser = async (): Promise<
   ApiCollectionResponse<Subscription>
 > => {
