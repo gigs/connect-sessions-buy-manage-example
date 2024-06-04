@@ -23,7 +23,7 @@ export const checkoutCurrentUserWithPlan = async (planId: string) => {
       }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: `http://localhost:3000/checkout/success?planId=${planId}`,
+    callbackUrl: `http://localhost:3000/checkout/callback?planId=${planId}`,
     intent: {
       type: 'checkoutNewSubscription',
       checkoutNewSubscription: {
