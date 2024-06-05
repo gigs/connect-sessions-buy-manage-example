@@ -9,6 +9,7 @@ import { SuccessAlert } from '@/components/SuccessAlert'
 import { ErrorAlert } from '@/components/ErrorAlert'
 
 type CallbackAction =
+  | 'checkoutNewSubscription'
   | 'checkoutAddon'
   | 'changeSubscription'
   | 'cancelSubscription'
@@ -21,7 +22,7 @@ type Props = {
   }
 }
 
-export default async function BackOfficePage({ searchParams }: Props) {
+export default async function PhonePlansPage({ searchParams }: Props) {
   if (!envVarsPresent()) {
     redirect('/setup-error')
   }
@@ -38,6 +39,7 @@ export default async function BackOfficePage({ searchParams }: Props) {
     checkoutAddon: 'Addon successfully added to subscription!',
     changeSubscription: 'Subscription successfully changed!',
     cancelSubscription: 'Subscription successfully cancelled!',
+    checkoutNewSubscription: 'Subscription successfully added!',
   }
 
   return (

@@ -23,7 +23,7 @@ export const checkoutCurrentUserWithPlan = async (planId: string) => {
       }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: `http://localhost:3000/checkout/callback?planId=${planId}`,
+    callbackUrl: `http://localhost:3000/phone-plans?action=checkoutNewSubscription`,
     intent: {
       type: 'checkoutNewSubscription',
       checkoutNewSubscription: {
@@ -47,7 +47,7 @@ export const cancelSubscription = async (subscriptionId: string) => {
   }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: 'http://localhost:3000/backoffice?action=cancelSubscription',
+    callbackUrl: 'http://localhost:3000/phone-plans?action=cancelSubscription',
     intent: {
       type: 'cancelSubscription',
       cancelSubscription: {
@@ -71,7 +71,7 @@ export const changeSubscription = async (subscriptionId: string) => {
   }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: 'http://localhost:3000/backoffice?action=changeSubscription',
+    callbackUrl: 'http://localhost:3000/phone-plans?action=changeSubscription',
     intent: {
       type: 'changeSubscription',
       changeSubscription: {
@@ -98,7 +98,7 @@ export const checkoutAddon = async (
   }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: 'http://localhost:3000/backoffice?action=checkoutAddon',
+    callbackUrl: 'http://localhost:3000/phone-plans?action=checkoutAddon',
     intent: {
       type: 'checkoutAddon',
       checkoutAddon: {
