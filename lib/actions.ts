@@ -3,6 +3,14 @@
 import { createConnectSession, findUser } from './api'
 import { auth, resetUserEmail, setUserEmail } from './applicationMocks'
 import { ConnectSessionParams } from './schemas/connectSession'
+import { headers } from 'next/headers'
+
+const createUrlForPath = (path: string) => {
+  const host = headers().get('x-forwarded-host') || headers().get('host')
+  const proto = headers().get('x-forwarded-proto') || 'http'
+
+  return new URL(path, `${proto}://${host}`).href
+}
 
 export const checkoutCurrentUserWithPlan = async (planId: string) => {
   const currentUser = auth.getUser()
@@ -23,7 +31,9 @@ export const checkoutCurrentUserWithPlan = async (planId: string) => {
       }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: `${window.location.origin}/phone-plans?action=checkoutNewSubscription`,
+    callbackUrl: createUrlForPath(
+      '/phone-plans?action=checkoutNewSubscription',
+    ),
     intent: {
       type: 'checkoutNewSubscription',
       checkoutNewSubscription: {
@@ -47,7 +57,7 @@ export const cancelSubscription = async (subscriptionId: string) => {
   }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: `${window.location.origin}/phone-plans?action=cancelSubscription`,
+    callbackUrl: createUrlForPath('/phone-plans?action=cancelSubscription'),
     intent: {
       type: 'cancelSubscription',
       cancelSubscription: {
@@ -71,7 +81,7 @@ export const changeSubscription = async (subscriptionId: string) => {
   }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: `${window.location.origin}/phone-plans?action=changeSubscription`,
+    callbackUrl: createUrlForPath('/phone-plans?action=changeSubscription'),
     intent: {
       type: 'changeSubscription',
       changeSubscription: {
@@ -98,7 +108,7 @@ export const checkoutAddon = async (
   }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: `${window.location.origin}/phone-plans?action=checkoutAddon`,
+    callbackUrl: createUrlForPath('/phone-plans?action=checkoutAddon'),
     intent: {
       type: 'checkoutAddon',
       checkoutAddon: {
