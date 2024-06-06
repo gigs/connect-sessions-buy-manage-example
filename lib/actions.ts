@@ -31,9 +31,7 @@ export const checkoutCurrentUserWithPlan = async (planId: string) => {
       }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: createUrlForPath(
-      '/phone-plans?action=checkoutNewSubscription',
-    ),
+    callbackUrl: createUrlForPath('/phone-plans'),
     intent: {
       type: 'checkoutNewSubscription',
       checkoutNewSubscription: {
@@ -57,7 +55,7 @@ export const cancelSubscription = async (subscriptionId: string) => {
   }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: createUrlForPath('/phone-plans?action=cancelSubscription'),
+    callbackUrl: createUrlForPath('/phone-plans'),
     intent: {
       type: 'cancelSubscription',
       cancelSubscription: {
@@ -81,7 +79,7 @@ export const changeSubscription = async (subscriptionId: string) => {
   }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: createUrlForPath('/phone-plans?action=changeSubscription'),
+    callbackUrl: createUrlForPath('/phone-plans'),
     intent: {
       type: 'changeSubscription',
       changeSubscription: {
@@ -108,7 +106,7 @@ export const checkoutAddon = async (
   }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: createUrlForPath('/phone-plans?action=checkoutAddon'),
+    callbackUrl: createUrlForPath('/phone-plans'),
     intent: {
       type: 'checkoutAddon',
       checkoutAddon: {
