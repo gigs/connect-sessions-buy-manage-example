@@ -92,13 +92,13 @@ export default function Home() {
                 </p>
                 <div className="mt-auto flex gap-8 font-medium text-gray-900 ">
                   <Link
-                    href="/backoffice"
+                    href="/phone-plans"
                     className="flex items-center rounded-lg p-2 text-sm hover:bg-ottoman-100"
                   >
                     <PanelsTopLeft className="mr-2 h-4 w-4" /> Demo
                   </Link>
                   <a
-                    href="https://github.com/gigs/connect-sessions-buy-manage-example/tree/main/app/(manage)/backoffice"
+                    href="https://github.com/gigs/connect-sessions-buy-manage-example/tree/main/app/(manage)/phone-plans"
                     className="flex items-center rounded-lg p-2 text-sm hover:bg-ottoman-100"
                   >
                     <Code className="mr-2 h-4 w-4" /> Source

@@ -1,4 +1,4 @@
-type ConnectSession = {
+export type ConnectSession = {
   object: 'connectSession'
   id: string
   callbackUrl: string

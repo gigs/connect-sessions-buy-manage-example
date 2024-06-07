@@ -32,7 +32,7 @@ export const UserButton = ({ user }: UserButtonProps) => {
       <DropdownPortal>
         <DropdownContent align="end" sideOffset={5}>
           <DropdownItem className="text-end">
-            <Link href="/backoffice" className="flex gap-2">
+            <Link href="/phone-plans" className="flex gap-2">
               <Home />
               My purchases
             </Link>

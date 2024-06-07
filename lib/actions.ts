@@ -3,6 +3,14 @@
 import { createConnectSession, findUser } from './api'
 import { auth, resetUserEmail, setUserEmail } from './applicationMocks'
 import { ConnectSessionParams } from './schemas/connectSession'
+import { headers } from 'next/headers'
+
+const createUrlForPath = (path: string) => {
+  const host = headers().get('x-forwarded-host') || headers().get('host')
+  const proto = headers().get('x-forwarded-proto') || 'http'
+
+  return new URL(path, `${proto}://${host}`).href
+}
 
 export const checkoutCurrentUserWithPlan = async (planId: string) => {
   const currentUser = auth.getUser()
@@ -23,7 +31,7 @@ export const checkoutCurrentUserWithPlan = async (planId: string) => {
       }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: 'http://localhost:3000?error=connectSessionFailed',
+    callbackUrl: createUrlForPath('/phone-plans'),
     intent: {
       type: 'checkoutNewSubscription',
       checkoutNewSubscription: {
@@ -47,7 +55,7 @@ export const cancelSubscription = async (subscriptionId: string) => {
   }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: 'http://localhost:3000?error=connectSessionFailed',
+    callbackUrl: createUrlForPath('/phone-plans'),
     intent: {
       type: 'cancelSubscription',
       cancelSubscription: {
@@ -71,7 +79,7 @@ export const changeSubscription = async (subscriptionId: string) => {
   }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: 'http://localhost:3000?error=connectSessionFailed',
+    callbackUrl: createUrlForPath('/phone-plans'),
     intent: {
       type: 'changeSubscription',
       changeSubscription: {
@@ -98,7 +106,7 @@ export const checkoutAddon = async (
   }
 
   const connectSession: ConnectSessionParams = {
-    callbackUrl: 'http://localhost:3000?error=connectSessionFailed',
+    callbackUrl: createUrlForPath('/phone-plans'),
     intent: {
       type: 'checkoutAddon',
       checkoutAddon: {

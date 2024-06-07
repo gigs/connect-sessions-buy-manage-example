@@ -139,3 +139,22 @@ export const createConnectSession = async (
 
   return { data }
 }
+
+export const getConnectSession = async (
+  connectSessionId: string,
+): Promise<ApiItemResponse<ConnectSessionResponse>> => {
+  const response = await fetch(
+    fetchUrl(`connectSessions/${connectSessionId}`),
+    { headers },
+  )
+  const data = await response.json()
+
+  if (response.status !== 200) {
+    console.error(data)
+    return {
+      error: data.message,
+    }
+  }
+
+  return { data }
+}

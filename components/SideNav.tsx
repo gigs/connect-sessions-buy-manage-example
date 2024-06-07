@@ -7,7 +7,7 @@ import { SideNavLogoutButton } from '@/components/SideNavLogoutButton'
 export const SideNav = () => {
   return (
     <div className="flex h-full max-h-screen flex-col gap-2">
-      <div className="flex h-[60px] items-center border-b px-6">
+      <Link href="/" className="flex h-[60px] items-center border-b px-6">
         <Image
           alt="Company Logo"
           className="h-6 w-auto"
@@ -15,7 +15,7 @@ export const SideNav = () => {
           src="/tigr-logo.webp"
           width={100}
         />
-      </div>
+      </Link>
       <div className="flex-1 overflow-auto py-2">
         <nav className="flex h-full flex-col items-stretch gap-2 px-4 text-sm font-medium">
           <Link
